@@ -10,7 +10,7 @@ Usage:
 
 - run util.py to create API cache database
 - (optional) set your settings directory in config.py (it's in %LOCALAPPDATA%\CCP\EVE on Windows)
-- run copysettings.py, enter index of the source character/account when prompted
+- run copysettings.py, enter index of the source/destination character/account when prompted
 
 Backups will be created under "backup" in the script directory, all settings files
 will be overwritten with the one you selected

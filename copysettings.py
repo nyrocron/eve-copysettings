@@ -36,13 +36,12 @@ def copy_character_settings(settings_dir):
 
 def list_accounts(settings_dir):
     accounts = []
-    filename_regex = re.compile(r'core_user_(?P<userid>\d+).dat')
+    filename_regex = re.compile(r'core_user_\d+\.dat')
     for entry in glob(path.join(settings_dir, 'core_user_*.dat')):
         filename = path.basename(entry)
         match = filename_regex.match(filename)
         if not match:
             continue
-        #user_id = int(match.group('userid'))
         user_mtime = datetime.fromtimestamp(path.getmtime(entry)).strftime('%Y-%m-%d %H:%M:%S')
         accounts.append((user_mtime, entry))
     return accounts
@@ -71,6 +70,19 @@ def copy_settings_dialogue(fileinfo_list):
 
     source_info = fileinfo_list.pop(source_id)
     src_path = source_info[-1]
+
+    print(' 0 ALL')
+    for i, fileinfo in enumerate(fileinfo_list, start=1):
+        print(str(i).rjust(2), fileinfo[0])
+
+    try:
+        destination_id = int(input('Destination index: '))
+    except ValueError:
+        return
+
+    if destination_id > 0:
+        fileinfo_list = [fileinfo_list[destination_id - 1]]
+
     for dst_info in fileinfo_list:
         dst_path = dst_info[-1]
         dst_filename = path.basename(dst_path)
