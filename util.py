@@ -1,3 +1,8 @@
+# Copyright 2015 Florian Tautz
+# This program is licensed under the MIT License,
+# see the contents of the LICENSE file in this directory for details.
+
+
 import sqlite3
 from datetime import datetime
 

@@ -1,0 +1,29 @@
+Script to copy EVE settings between characters/accounts
+
+
+Requirements:
+
+python 3.4+
+
+
+Usage:
+
+- run util.py to create API cache database
+- (optional) set your settings directory in config.py (it's in %LOCALAPPDATA%\CCP\EVE on Windows)
+- run copysettings.py, enter index of the source character/account when prompted
+
+Backups will be created under "backup" in the script directory, all settings files
+will be overwritten with the one you selected
+
+If you select no source file (just press enter) nothing will be done for this step
+
+For license information, see the contents of the LICENSE file.
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

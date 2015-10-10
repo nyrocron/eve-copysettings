@@ -1,6 +1,11 @@
+# Copyright 2015 Florian Tautz
+# This program is licensed under the MIT License,
+# see the contents of the LICENSE file in this directory for details.
+
+
 import re
 from glob import glob
-from os import path, mkdir
+from os import path, makedirs
 from datetime import datetime
 from shutil import copyfile, move
 
@@ -26,7 +31,7 @@ def list_characters(settings_dir):
 def copy_character_settings(settings_dir):
     character_configs = list_characters(config.settings_dir)
     character_configs.sort(key=lambda c: c[0])
-    copy_settings(character_configs)
+    copy_settings_dialogue(character_configs)
 
 
 def list_accounts(settings_dir):
@@ -46,10 +51,13 @@ def list_accounts(settings_dir):
 def copy_account_settings(settings_dir):
     account_configs = list_accounts(settings_dir)
     account_configs.sort(key=lambda a: a[0], reverse=True)
-    copy_settings(account_configs)
+    copy_settings_dialogue(account_configs)
 
 
-def copy_settings(fileinfo_list):
+def copy_settings_dialogue(fileinfo_list):
+    if len(fileinfo_list) == 0:
+        raise Exception("no settings files provided")
+
     for i, fileinfo in enumerate(fileinfo_list):
         print(str(i).rjust(2), fileinfo[0])
 
@@ -59,7 +67,7 @@ def copy_settings(fileinfo_list):
         return
 
     backup_dir = path.join('backup', datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-    mkdir(backup_dir)
+    makedirs(backup_dir)
 
     source_info = fileinfo_list.pop(source_id)
     src_path = source_info[-1]
