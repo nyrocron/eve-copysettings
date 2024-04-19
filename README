@@ -9,7 +9,6 @@ esi-client
 
 Usage:
 
-- run util.py to create API cache database
 - set your settings directory in config.py (it's in %LOCALAPPDATA%\CCP\EVE on Windows)
 - run copysettings.py, enter index of the source/destination character/account when prompted
 
