@@ -1,4 +1,4 @@
-# Copyright 2015 Florian Tautz
+# Copyright 2015-2024 Florian Tautz
 # This program is licensed under the MIT License,
 # see the contents of the LICENSE file in this directory for details.
 
@@ -9,9 +9,7 @@ from os import path, makedirs
 from datetime import datetime
 from shutil import copyfile, move
 
-from eveapi import get_client
-
-api = get_client()
+from esi_utils import character_name
 
 
 def list_characters(settings_dir):
@@ -23,14 +21,14 @@ def list_characters(settings_dir):
         if not match:
             continue
         character_id = int(match.group('charid'))
-        character_name = api.character_name(character_id)
-        characters.append((character_name, entry))
+        characters.append((character_name(character_id), entry))
     return characters
 
 
 def copy_character_settings(settings_dir):
     character_configs = list_characters(config.settings_dir)
     character_configs.sort(key=lambda c: c[0])
+    print("Copy Character Settings")
     copy_settings_dialogue(character_configs)
 
 
@@ -50,6 +48,7 @@ def list_accounts(settings_dir):
 def copy_account_settings(settings_dir):
     account_configs = list_accounts(settings_dir)
     account_configs.sort(key=lambda a: a[0], reverse=True)
+    print("Copy Account Settings")
     copy_settings_dialogue(account_configs)
 
 
